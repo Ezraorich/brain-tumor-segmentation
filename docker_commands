@@ -1,0 +1,36 @@
+docker --version
+
+docker run -it -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
+
+docker exec -ti container_id bash
+ls
+# this will output container directories inside the docker, you are running as a root.
+
+pip list 
+pip install jupyterlab 
+# you can install any library inside docker container, but it is not saved forever. 
+# for that you should create new image using old image.use commit
+docker commit new_image_name
+
+
+
+
+docker stop container_id 
+ls
+cd Documents
+ls
+
+mkdir DockerTutorial
+cd dockerTutorial
+ls 
+pwd
+docker run -it -p 8888:8888 -mount src="$pwd", target =/app, type = bind tensorflow/tensorflow:latest-gpu-jupyter
+ls 
+cd app/
+#docker run --rm -d -t --name=jupyter(NAMES) -p 8888:8888 --mount src="$(pwd)", target =/app, type= bind 
+jupyter_custom(IMAGE)
+
+docker volume create  --name notebooks
+docker run -it -d -v notebooks:/home/jupyter -p 8888:8888 container_id
+docker ps -a
+docker stop container_id
