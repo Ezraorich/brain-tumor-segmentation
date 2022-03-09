@@ -14,7 +14,8 @@ docker commit new_image_name
 
 
 
-
+ctrl + d 
+# this is to exit bash and container
 docker stop container_id 
 ls
 cd Documents
