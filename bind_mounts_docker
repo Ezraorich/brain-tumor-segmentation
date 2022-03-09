@@ -1,0 +1,2 @@
+sudo docker run -d -it -p 8888:8888 --name bm1 --mount type=bind,source="$(pwd)",target=/app tensorflow/tensorflow:latest-gpu-jupyter
+jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
