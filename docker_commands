@@ -22,10 +22,10 @@ cd Documents
 ls
 
 mkdir DockerTutorial
-cd dockerTutorial
+cd DockerTutorial
 ls 
 pwd
-docker run -it -p 8888:8888 -mount src="$pwd", target =/app, type = bind tensorflow/tensorflow:latest-gpu-jupyter
+docker run -it --mount src=`pwd`,target=/test_container,type=bind tensorflow/tensorflow:latest-gpu-jupyter
 ls 
 cd app/
 #docker run --rm -d -t --name=jupyter(NAMES) -p 8888:8888 --mount src="$(pwd)", target =/app, type= bind 
