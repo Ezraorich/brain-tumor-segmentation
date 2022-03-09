@@ -1,6 +1,7 @@
 docker --version
 
 docker run -it -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
+docker run -d -it -p 8888:8888 --name bm1 --mount type=bind,source="$(pwd)",target=/app tensorflow/tensorflow:latest-gpu-jupyter
 sudo docker ps
 #this will print container_id
 docker exec -ti container_id bash
@@ -44,7 +45,7 @@ sudo docker run -it --name salat -v ~/Documents/dockerfiles:/notebooks -p 8888:8
 
 
 docker rm -f container_id
-jupyter notebook --ip 8888:8888 --no-browser --allow-root
+jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
 
 sudo docker exec -ti 0312a65925c0 bash
 
