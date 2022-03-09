@@ -1,7 +1,8 @@
 docker --version
 
 docker run -it -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
-
+sudo docker ps
+#this will print container_id
 docker exec -ti container_id bash
 ls
 # this will output container directories inside the docker, you are running as a root.
@@ -25,13 +26,43 @@ mkdir DockerTutorial
 cd DockerTutorial
 ls 
 pwd
-docker run -it --mount src=`pwd`,target=/test_container,type=bind tensorflow/tensorflow:latest-gpu-jupyter
+sudo docker run -it --mount src=`pwd`,target=/test_container,type=bind tensorflow/tensorflow:latest-gpu-jupyter
+sudo docker run -it --mount src=-"$(pwd)",target=/test_container,type=bind tensorflow/tensorflow:latest-gpu-jupyter
+
 ls 
 cd app/
 #docker run --rm -d -t --name=jupyter(NAMES) -p 8888:8888 --mount src="$(pwd)", target =/app, type= bind 
 jupyter_custom(IMAGE)
 
 docker volume create  --name notebooks
-docker run -it -d -v notebooks:/home/jupyter -p 8888:8888 container_id
+docker run -it -d -v notebooks: /home/passion/Documents/dockerfiles -p 8888:8888 container_id
+/home/passion/Documents/dockerfiles
+sudo docker run -it -d -v notebooks:/home/passion/Documents/dockerfiles -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
+0312a65925c0de446770f82a6ec2c6b857d7405b59f15c95b58d3e4f4aa032cb
+#sudo docker run -it --rm --name tf -v ~/Documents/dockerfiles:/notebooks -p 8888:8888 -p 6006:6006 tensorflow/tensorflow:latest-gpu-jupyter
+sudo docker run -it --name salat -v ~/Documents/dockerfiles:/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
+
+
+docker rm -f container_id
+jupyter notebook --ip 8888:8888 --no-browser --allow-root
+
+sudo docker exec -ti 0312a65925c0 bash
+
 docker ps -a
 docker stop container_id
+
+
+VOLUMES:
+sudo docker volume inspect notebooks
+[
+    {
+        "CreatedAt": "2022-03-09T14:50:52+06:00",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/notebooks/_data",
+        "Name": "notebooks",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+
