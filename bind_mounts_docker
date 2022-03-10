@@ -31,11 +31,13 @@ sudo docker run -it -v $(/home/passion/Documents/dockerfiles):/tf/notebooks -p 8
 
 sudo docker run -it --name container --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
 sudo docker run --gpus all -it --name gpucontainer --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
-
+nvidia-docker run -it --name container --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter nvidia/cuda:11.0-base nvidia-smi
 sudo docker ps
 [sudo] password for passion: 
 CONTAINER ID   IMAGE                                      COMMAND                  CREATED          STATUS          PORTS                                       NAMES
 a3389c448ef5   tensorflow/tensorflow:latest-gpu-jupyter   "bash -c 'source /et…"   31 minutes ago   Up 31 minutes   0.0.0.0:8888->8888/tcp, :::8888->8888/tcp   gpucontainer
 
 sudo docker commit a3389c448ef5 tensorflow/tensorflow:latest-gpu-jupyter_new
+docker run --gpus all -it --rm tensorflow/tensorflow:latest-gpu-jupyter_new \
+   python -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
 
