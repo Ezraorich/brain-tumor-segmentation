@@ -14,7 +14,7 @@ sudo docker run -d \
 > -it \
 > --name container \
 > --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tensorflow-tutorials \
-> tensorflow/tensorflow:latest-gpu-jupyter
+> -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
 8684525ddac57a404c492d6b17a983df4c3d3aa3d423812da3aafe22d694eb09
 
 sudo docker ps
