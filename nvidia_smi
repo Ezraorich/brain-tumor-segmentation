@@ -14,8 +14,8 @@ sudo docker run --gpus all -it tensorflow/tensorflow:latest-gpu-jupyter bash
 
 sudo docker run --runtime=nvidia -it --name gpucontainer --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
 
-
-sudo docker run -it --rm --gpus all tensorflow/tensorflow:latest-gpu-jupyter nvidia-smi
+docker run -it --rm --gpus all tensorflow/tensorflow:latest-gpu-jupyter nvidia-smi
+sudo docker run -it --name gpucontainer --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks -p 8888:8888 --gpus all tensorflow/tensorflow:latest-gpu-jupyter nvidia-smi
 Fri Mar 11 10:46:49 2022       
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.2     |
@@ -39,3 +39,6 @@ Fri Mar 11 10:46:49 2022
 |        ID   ID                                                   Usage      |
 |=============================================================================|
 +-----------------------------------------------------------------------------+
+sudo docker start gpucontainer
+
+
