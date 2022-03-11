@@ -2,7 +2,7 @@ lspci | grep -i nvidia
 # it checks whether the nvidia gpu is available
 
 
-sudo docker run -it --name gpucontainer --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks --gpus all -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter nvidia-smi
+sudo docker run -it --name gpucontainer --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks --gpus all nvidia/cuda:11.0-base -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter nvidia-smi
 
 
 Fri Mar 11 10:46:49 2022       
