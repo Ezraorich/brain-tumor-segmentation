@@ -17,9 +17,10 @@ sudo service docker start
 *docker run -it --gpus all -v $(pwd):/workplace/ tensorflow/tensorflow:nightly-gpu bash
 docker run --gpus all -p 8888:8888 -d mlverse/mlverse-base:version-0.0.8 jupyter notebook --ip 0.0.0.0
 sudo docker run -it --gpus all -p 8888:8888 --name feifei -v $(/home/passion/Documents/dockerfiles):/tf/notebooks  tensorflow/tensorflow:latest-gpu-jupyter jupyter notebook --ip 0.0.0.0
-sudo docker run -it --gpus all -p 8888:8888 --name feifei -v $(/home/passion/Documents/dockerfiles):/tf/notebooks  tensorflow/tensorflow:latest-gpu-jupyter jupyter notebook --allow-root
+sudo docker run -it --gpus 'all,"capabilities=compute,utility"' -p 8888:8888 --name gpu_good --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks tensorflow/tensorflow:latest-gpu-jupyter jupyter notebook --ip 0.0.0.0 --allow-root
 
-sudo docker run -it --gpus all --name gpucontainer --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter bash
+sudo docker run -it --gpus all -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter jupyter notebook --notebook-dir=/tf --ip 0.0.0.0 --no-browser --allow-root 
+sudo nvidia-docker run -it --gpus all --name gpucontainer --mount type=bind,source=/home/passion/Documents/dockerfiles,target=/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter bash
 ls
 cd documents
 
