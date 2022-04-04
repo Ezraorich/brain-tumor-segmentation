@@ -1,4 +1,5 @@
 https://openbase.com/python/segmentation-models-3D/documentation
+https://www.tensorflow.org/guide/keras/transfer_learning
 import segmentation_models_3D as sm
 from tensorflow.keras.optimizers import Adam
 from tensorflow import keras
