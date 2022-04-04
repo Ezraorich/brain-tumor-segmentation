@@ -1,0 +1,30 @@
+https://openbase.com/python/segmentation-models-3D/documentation
+import segmentation_models_3D as sm
+from tensorflow.keras.optimizers import Adam
+from tensorflow import keras
+dice_loss = sm.losses.DiceLoss(class_weights=np.array([wt0, wt1, wt2, wt3])) 
+focal_loss = sm.losses.CategoricalFocalLoss()
+total_loss = dice_loss + (1 * focal_loss)
+
+metrics = ['accuracy', sm.metrics.IOUScore(threshold=0.5)]
+
+
+model1 = sm.Unet('resnet34', encoder_weights='imagenet')
+# binary segmentation (this parameters are default when you call Unet('resnet34')
+model2 = sm.FPN('densenet121', classes=1, activation='sigmoid')
+# multiclass segmentation with non overlapping class masks (your classes + background)
+model3 = sm.Linknet('resnet34', classes=3, activation='softmax')
+# multiclass segmentation with independent overlapping/non-overlapping class masks
+model4 = sm.PSPNet('resnet34', classes=3, activation='sigmoid')
+# If you need to specify non-standard input shape
+model5 = sm.Unet('resnet50', input_shape=(128, 128, 128, 3), encoder_weights=None)
+model5 = sm.Unet('resnet50', input_shape=(96, 128, 128, 6), encoder_weights=None)
+model5.compile(optimizer = 'adam', loss=total_loss, metrics=metrics)
+print(model.summary())
+history=model5.fit(train_img_datagen,
+          steps_per_epoch=steps_per_epoch,
+          epochs=100,
+          verbose=1,
+          validation_data=val_img_datagen,
+          validation_steps=val_steps_per_epoch,
+          )
