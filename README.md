@@ -23,5 +23,7 @@ In validation samples, you dont have segmentation masks. Only 4 files: flair, t1
 
 
 In Brats_as_arrays folder you can see preprocessing step. There 3 files from each training sample:flair, t1ce, t2 were stacked together.
-In 3d-Unet copy1.ipynb file Those 4d arrays were trained on 3D-Unet and evaluated using seg.nii.gz file or mask converted to array. 
+In 3d_segmentation_models.ipynb file Those 4d arrays were trained on Unet and evaluated using seg.nii.gz file or mask converted to array. 
+![500trainacc](https://user-images.githubusercontent.com/43410356/161956099-f689c84c-052c-4721-ac62-d333563138bc.png)
+![500trainloss](https://user-images.githubusercontent.com/43410356/161956120-5026745b-ccee-499a-92aa-ff0f07c4d80e.png)
 
